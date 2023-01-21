@@ -71,7 +71,8 @@ end
 
 function M:format_status(symbols, depth, separator, icons_enabled, colored)
   local parts = {}
-  depth = (type(depth) == "function" and depth()) or depth or #symbols
+  if type(depth) == "function" then depth = depth() end
+  depth = depth or #symbols
 
   if depth > 0 then
     symbols = { unpack(symbols, 1, depth) }
